@@ -4,11 +4,11 @@
 #include <iomanip>
 #include <algorithm>
 #include <numeric>
+// #define size 1
 
 using std::cout;
 using std::cin;
 using std::string;
-using std::bool_constant;
 
 struct data {
 	string vard, pavard;
@@ -31,28 +31,28 @@ int main() {
 		cin >> eil_mas[a].vard >> eil_mas[a].pavard >> eil_mas[a].egz;
 
 		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
-		int end;
-		int sk = 0;
+		int end; // namu darbo pazymys
+		int sk = 0; //indekso skaicius
 
 		int mas_sk = 1; // is pradziu elementu skaicius 1
 		int* arr = new int(mas_sk);
+		//int arr[size]
 		do {
-			cin >> end;
-			if (end != -1) {
-				eil_mas[a].nd[sk] = end;
+			cin >> end; //ivedame pazymi
+			if (end != -1) { //stabdoma jei vartotojas iveda -1
+				eil_mas[a].nd[sk] = end; //priskiriama ivesta reiksme prie nd duomenu
 				eil_mas[a].vidurkis = eil_mas[a].vidurkis + (float)eil_mas[a].nd[sk];
-				ndpaz.push_back(eil_mas[a].nd[sk]); //pazymiai surasomi i vektoriu
+				// ndpaz.push_back(eil_mas[a].nd[sk]); //pazymiai surasomi i vektoriu
 				arr[mas_sk] = eil_mas[a].nd[sk]; //pazymiai surasomi i masyva
-				cout << arr[mas_sk] << std::endl;
+				cout << arr[mas_sk] << std::endl; // neveikia
 				mas_sk = mas_sk + 1;
-				sk = sk + 1;
+				sk = sk + 1; //indeksas padidinamas
 			}
 			else {
 				cout<< "Aciu uz suvestus duomenis apie " 
 					<< eil_mas[a].vard << " " << eil_mas[a].pavard << "." <<std::endl;
 			}
-
-		} while (end != -1);
+		} while (end != -1); //programa vykdoma kol vartotojas neiveda -1
 
 		int n1 = sizeof(arr) / sizeof(arr[0]);
 		std::sort(arr, arr + n1);
@@ -63,11 +63,11 @@ int main() {
 
 		// MEDIANOS RADIMAS
 		cout << "Namu darbu skaicius: " << sizeof(arr) << std::endl;
-		sort(ndpaz.begin(), ndpaz.end());
+		sort(ndpaz.begin(), ndpaz.end());  //rusiavimas
 		if (ndpaz.size() % 2 == 1) { //nelyginis skaicius
 			eil_mas[a].mediana = ndpaz[ndpaz.size() / 2];  //vidurinis elementas	
 		}
-		else { //lyginis
+		else { //lyginis skaicius
 			eil_mas[a].mediana = (float)(ndpaz[ndpaz.size() / 2 - 1] + ndpaz[ndpaz.size() / 2]) / 2;
 		}
 		/*
@@ -86,13 +86,13 @@ int main() {
 		cout << "Pazymiu vidurkis: " << eil_mas[a].vidurkis << std::endl;
 		eil_mas[a].vidurkis = 0.4 * eil_mas[a].vidurkis + 0.6 * eil_mas[a].egz;
 
-		eil_vect.push_back(eil); //su indeksu 0
+		eil_vect.push_back(eil_mas[a]); //su indeksu 0
 		//eil_vect.push_back(eil); //su indeksu 1
 		//eil_vect[1].galutinis = 25;
 		//ndpaz.clear();
 	}
-	cout << eil_mas[1].vard << std::endl;
-	
+
+	// spausdinimas
 	cout << std::endl << std::endl;
 	cout << std::left 
 		<< std::setw(20) << "Vardas" 
