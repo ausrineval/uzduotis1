@@ -28,7 +28,6 @@ int main() {
 	for (int a = 0; a < n; a++)
 	{
 		cout << "Iveskite duomenis (vardas, pavarde, egzamino pazymys): \n";
-		//cin >> eil.vard >> eil.pavard >> eil.egz; // eil_mas[] dynaminis masyvas
 		cin >> eil.vard >> eil.pavard >> eil.egz;
 		
 		// SU CHAR (NEVEIKIA)
@@ -89,6 +88,7 @@ int main() {
 		else { //nelyginis
 			eil.mediana = ndpaz[ndpaz.size() / 2];  //vidurinis elementas
 		} */
+		
 		cout << "Pazymiu mediana: " << eil.mediana << std::endl;
 		eil.mediana = 0.4 * eil.mediana + 0.6 * eil.egz;
 
@@ -100,7 +100,7 @@ int main() {
 
 
 		// cout << "Ivesta: " << eil.vard << " " << eil.pavard << " " << eil.egz;
-		// for (int i = 0; i < 5; i++) cout << " " << eil.nd[i]; // NEVEIKIA SU 10
+		// for (int i = 0; i < 5; i++) cout << " " << eil.nd[i]; // NEVEIKIA SU 10 JEI NAUDOJAMAS CHAR VARIANTAS
 
 		eil_vect.push_back(eil); //su indeksu 0
 		//eil_vect.push_back(eil); //su indeksu 1
@@ -124,8 +124,8 @@ int main() {
 		cout << std::left
 			<< std::setw(20) << eil_vect[j].vard
 			<< std::setw(20) << eil_vect[j].pavard
-			<< std::setw(20) << eil_vect[j].vidurkis // neteisingas antras
-			<< std::setw(20) << eil_vect[j].mediana << std::endl; //neteisingas antras
+			<< std::setw(20) << eil_vect[j].vidurkis
+			<< std::setw(20) << eil_vect[j].mediana << std::endl;
 		// for (int i = 0; i < 5; i++) cout << " " << eil_vect[j].nd[i];
 	}
 	eil_vect.clear(); 
