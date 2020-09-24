@@ -1,5 +1,5 @@
 # Pirmos uzduoties v0.1 dalis.
-### Ka daro programa:
+## Ka daro programa:
 - Saugo studentu duomenis (vardas, pavarde, egz. pazymys, n.d. pazymiai), kuriuos iveda vartotojas. 
 - Apskaiciuoja vidurki bei mediana pagal duota formule.
 - Atspausdina suformatuotus duomenis lenteleje.
@@ -19,6 +19,14 @@
 9. Spausdinami visu ivestu studentu duomenys pagal stulpelius.
 
 ### Issamiau apie v0.1 su vektoriumi
+Sukuriamas naujas vektorius *ndpaz*, kuriame saugomi interger tipo duomenys. Jame bus saugomi namu darbu pazymiai.  
 
+Namu darbu pazymiu ivedimo metu vykdomas while ciklas, kuris stabdomas, kai vartotojas iveda *'-1'*. Siame while cikle kiekvienas ivestas pazymys saugomas *ndpaz* vektoriuje naudojant *push_back* funkcija.  
+
+Pries skaiciuojant pazymiu mediana *ndpaz* vektoriaus elementai yra surusiuojami naudojant *sort* metoda. Su *if* statement apskaiciuojama mediana.  
+
+Vidurkiui suskaiciuoti anksciau minetame *while* cikle sudedami visi pazymiai.  
+
+Programai baigus viska skaiciuoti apie n-ojo studento duomenis panaudojama funkcija *push_back* studento duomenu vektoriui bei funkcija *clear* *ndpaz* vektoriui.
 
 ### Issamiau apie v0.1 su masyvu
