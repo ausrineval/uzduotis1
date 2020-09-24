@@ -10,6 +10,7 @@ using std::cin;
 using std::string;
 using std::bool_constant;
 
+// DUOMENYS
 struct data {
 	string vard, pavard;
 	int nd[10], egz=0;
@@ -19,9 +20,9 @@ struct data {
 int main() {
 	data eil; data eil_mas[5];
 	std::vector <data> eil_vect;
-	std::vector<int> ndpaz;
+	std::vector<int> ndpaz; //NAMU DARBU VEKTORIUS
 
-	// N STUDENTAMS 
+	// DUOMENU IVEDIMAS 
 	int n = 0;
 	cout << "Kiek studentu duomenu ivesite? \n";
 	cin >> n;
@@ -42,9 +43,8 @@ int main() {
 				if (end[0]=='1' && end[1]=='0') {
 					eil.nd[sk] = ((int)end[0]-48) + ((int)end[1]-48);
 				}
-				else {
-					eil.nd[sk] = (int)end[0] - 48;
-				}
+				else eil.nd[sk] = (int)end[0] - 48;
+				
 				eil.vidurkis = eil.vidurkis + (float)eil.nd[sk];
 				ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
 				sk = sk + 1;
@@ -52,9 +52,9 @@ int main() {
 			else {
 				cout << "Aciu uz suvestus duomenis apie " << eil.vard << " "<< eil.pavard << std::endl;
 			}
-
 		} while (end[0] != '-'); */
 
+		// NAMU DARBU PAZYMIU IVEDIMAS
 		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
 		int end;
 		int sk = 0;
@@ -69,10 +69,9 @@ int main() {
 			else {
 				cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." <<std::endl;
 			}
-
 		} while (end != -1);
 
-		// MEDIANOS RADIMAS
+		// MEDIANOS SKAICIAVIMAS
 		cout << "Namu darbu skaicius: " << ndpaz.size() << std::endl;
 		sort(ndpaz.begin(), ndpaz.end());
 		if (ndpaz.size() % 2 == 1) { //nelyginis skaicius
@@ -81,13 +80,6 @@ int main() {
 		else { //lyginis
 			eil.mediana = (float)(ndpaz[ndpaz.size() / 2 - 1] + ndpaz[ndpaz.size() / 2]) / 2;
 		}
-		/*
-		if (ndpaz.size() % 2 == 0) { //lyginis skaicius
-			eil.mediana = (ndpaz[ndpaz.size() / 2 -1] + ndpaz[ndpaz.size() / 2 ]) / 2;
-		}					// jei 4 elementai paima antra [1] ir trecia [2]
-		else { //nelyginis
-			eil.mediana = ndpaz[ndpaz.size() / 2];  //vidurinis elementas
-		} */
 		
 		cout << "Pazymiu mediana: " << eil.mediana << std::endl;
 		eil.mediana = 0.4 * eil.mediana + 0.6 * eil.egz;
@@ -97,7 +89,6 @@ int main() {
 		eil.vidurkis = eil.vidurkis / sk;
 		cout << "Pazymiu vidurkis: " << eil.vidurkis << std::endl;
 		eil.vidurkis = 0.4 * eil.vidurkis + 0.6 * eil.egz;
-
 
 		// cout << "Ivesta: " << eil.vard << " " << eil.pavard << " " << eil.egz;
 		// for (int i = 0; i < 5; i++) cout << " " << eil.nd[i]; // NEVEIKIA SU 10 JEI NAUDOJAMAS CHAR VARIANTAS
@@ -110,7 +101,7 @@ int main() {
 		eil.mediana = 0;
 	}
 
-	
+	// SPAUSDINIMAS
 	cout << std::endl << std::endl;
 	cout << std::left 
 		<< std::setw(20) << "Vardas" 
