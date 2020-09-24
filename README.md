@@ -1,5 +1,4 @@
-# 1 Uzduotis 
-## Pirmos uzduoties v0.1 dalis.
+# Pirmos uzduoties v0.1 dalis.
 ### Ka daro programa:
 - Saugo studentu duomenis (vardas, pavarde, egz. pazymys, n.d. pazymiai), kuriuos iveda vartotojas. 
 - Apskaiciuoja vidurki bei mediana pagal duota formule.
