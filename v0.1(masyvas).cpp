@@ -20,6 +20,7 @@ int main() {
 	data eil; data eil_mas[7];
 	std::vector <data> eil_vect;
 	std::vector <int> ndpaz;
+	std::array <int, 5> nd_paz = {};
 
 	// N STUDENTAMS 
 	int n = 0;
@@ -81,16 +82,17 @@ int main() {
 		eil_mas[a].mediana = 0.4 * eil_mas[a].mediana + 0.6 * eil_mas[a].egz;
 
 		// VIDURKIO SKAICIAVIMAS VEKTORIUI
-		int suma = accumulate(ndpaz.begin(), ndpaz.end(), 0); //sudeda visus nd vektoriaus elementus
 		eil_mas[a].vidurkis = eil_mas[a].vidurkis / sk;
 		cout << "Pazymiu vidurkis: " << eil_mas[a].vidurkis << std::endl;
 		eil_mas[a].vidurkis = 0.4 * eil_mas[a].vidurkis + 0.6 * eil_mas[a].egz;
 
 		eil_vect.push_back(eil_mas[a]); //su indeksu 0
-		//eil_vect.push_back(eil); //su indeksu 1
-		//eil_vect[1].galutinis = 25;
-		//ndpaz.clear();
+
 	}
+	cout << "Jei norite, kad butu spausdinamas galutinis pazymys pagal vidurki, iveskite 0, \n"
+		 << "jei pagal mediana, iveskite 1." << std::endl;
+	int gal;
+	cin >> gal;
 
 	// spausdinimas
 	cout << std::endl << std::endl;
@@ -106,9 +108,8 @@ int main() {
 		cout << std::left
 			<< std::setw(20) << eil_mas[j].vard
 			<< std::setw(20) << eil_mas[j].pavard
-			<< std::setw(20) << eil_mas[j].vidurkis // neteisingas antras
-			<< std::setw(20) << eil_mas[j].mediana << std::endl; //neteisingas antras
-		// for (int i = 0; i < 5; i++) cout << " " << eil_vect[j].nd[i];
+			<< std::setw(20) << eil_mas[j].vidurkis
+			<< std::setw(20) << eil_mas[j].mediana << std::endl;
 	}
 	eil_vect.clear(); 
 
