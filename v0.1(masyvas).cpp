@@ -4,23 +4,42 @@
 #include <iomanip>
 #include <algorithm>
 #include <numeric>
-// #define size 1
+#include <bits/stdc++.h>
 
 using std::cout;
 using std::cin;
 using std::string;
+using std::vector;
+using std::array;
 
 struct data {
 	string vard, pavard;
-	int nd[10], egz=0;
+	int nd[10], egz = 0;
 	float vidurkis = 0, mediana = 0, galutinis = 0;
 };
+// MEDIANOS RADIMAS MASYVUI
+double findMedian(int a[], int n){
+  // First we sort the array 
+  std::sort(a, a+n); 
+    
+  if (n % 2 != 0) {
+    return (double)a[n/2]; }
+  else return (double)(a[(n-1)/2] + a[n/2])/2.0; 
+}
+
+//VIDURKIO RADIMAS MASYVUI
+double findMean(int a[], int n){ 
+  int sum = 0; 
+  for (int i = 0; i < n; i++)  
+    sum += a[i]; 
+          
+  return (double)sum/(double)n; 
+} 
 
 int main() {
 	data eil; data eil_mas[7];
-	std::vector <data> eil_vect;
-	std::vector <int> ndpaz;
-	std::array <int, 5> nd_paz = {};
+	vector <data> eil_vect;
+	vector <int> ndpaz;	
 
 	// N STUDENTAMS 
 	int n = 0;
@@ -28,90 +47,133 @@ int main() {
 	cin >> n;
 	for (int a = 0; a < n; a++)
 	{
-		cout << "Iveskite duomenis (vardas, pavarde, egzamino pazymys): \n";
-		cin >> eil_mas[a].vard >> eil_mas[a].pavard >> eil_mas[a].egz;
+		cout << "Iveskite duomenis (vardas, pavarde): \n";
+		cin >> eil_mas[a].vard >> eil_mas[a].pavard;
 
-		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
-		int end; // namu darbo pazymys
-		int sk = 0; //indekso skaicius
+    cout << "Jei norite generuoti egzamino pazymi atsitiktinai, parasykite -1. Jei ne, iveskite pazymi paprastai. \n";
+    int egz_paz=0;
+    cin >> egz_paz;
+    if (egz_paz ==-1){
+      eil_mas[a].egz = rand()%11;
+    }
+    else eil_mas[a].egz= egz_paz;
 
-		int mas_sk = 1; // is pradziu elementu skaicius 1
-		int* arr = new int(mas_sk);
-		//int arr[size]
-		do {
-			cin >> end; //ivedame pazymi
-			if (end != -1) { //stabdoma jei vartotojas iveda -1
-				eil_mas[a].nd[sk] = end; //priskiriama ivesta reiksme prie nd duomenu
-				eil_mas[a].vidurkis = eil_mas[a].vidurkis + (float)eil_mas[a].nd[sk];
-				// ndpaz.push_back(eil_mas[a].nd[sk]); //pazymiai surasomi i vektoriu
-				arr[mas_sk] = eil_mas[a].nd[sk]; //pazymiai surasomi i masyva
-				cout << arr[mas_sk] << std::endl; // neveikia
-				mas_sk = mas_sk + 1;
-				sk = sk + 1; //indeksas padidinamas
-			}
-			else {
-				cout<< "Aciu uz suvestus duomenis apie " 
-					<< eil_mas[a].vard << " " << eil_mas[a].pavard << "." <<std::endl;
-			}
-		} while (end != -1); //programa vykdoma kol vartotojas neiveda -1
+    int pazymiai;
+    cout << "Jei norite atsitiktinai generuotu pazymiu, iveskite '0', jei norite ivesti patys - '1'. \n";
+    cin >> pazymiai;
+    int end; // namu darbo pazymys
+    int sk = 1; //indekso skaicius
+      
+    int* nd_paz = new int[sk];
 
-		int n1 = sizeof(arr) / sizeof(arr[0]);
-		std::sort(arr, arr + n1);
+    if(pazymiai==1){
+      cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
+      do {
+        cin >> end; //ivedame pazymi
+        if (end != -1) { //stabdoma jei vartotojas iveda -1
+          int* temp = new int[sk];
 
-		cout << "\nArray after sorting using "
-			"default sort is : \n";
-		for (int i = 0; i < n1; ++i) cout << arr[i] << " ";
+          for(int i = 0; i<sk-1; i++){
+            temp[i] = nd_paz[i];
+          }
+          delete[] nd_paz;
+          nd_paz = new int[sk];
+          for(int i =0; i < sk-1; i++){
+            nd_paz[i]= temp[i];
+          }
+          delete [] temp;
+          nd_paz[sk-1] = end;
+          sk++;
+        }
+        else {
+          cout << "Aciu uz suvestus duomenis apie "
+            << eil_mas[a].vard << " " << eil_mas[a].pavard << "." << std::endl;
+        }
+      } while (end != -1); //programa vykdoma kol vartotojas neiveda -1
+    }
+    else{
+      cout << "Iveskite bet koki skaiciu ir bus generuojamas atsitiktinis pazymys, jei baigete vesti, parasykite '-1'. \n";
+      do {
+        cin >> end; //ivedame pazymi
+        if (end != -1) { //stabdoma jei vartotojas iveda -1
+          int* temp = new int[sk];
 
-		// MEDIANOS RADIMAS
-		cout << "Namu darbu skaicius: " << sizeof(arr) << std::endl;
-		sort(ndpaz.begin(), ndpaz.end());  //rusiavimas
-		if (ndpaz.size() % 2 == 1) { //nelyginis skaicius
-			eil_mas[a].mediana = ndpaz[ndpaz.size() / 2];  //vidurinis elementas	
-		}
-		else { //lyginis skaicius
-			eil_mas[a].mediana = (float)(ndpaz[ndpaz.size() / 2 - 1] + ndpaz[ndpaz.size() / 2]) / 2;
-		}
-		/*
-		if (ndpaz.size() % 2 == 0) { //lyginis skaicius
-			eil.mediana = (ndpaz[ndpaz.size() / 2 -1] + ndpaz[ndpaz.size() / 2 ]) / 2;
-		}					// jei 4 elementai paima antra [1] ir trecia [2]
-		else { //nelyginis
-			eil.mediana = ndpaz[ndpaz.size() / 2];  //vidurinis elementas
-		} */
-		cout << "Pazymiu mediana: " << eil_mas[a].mediana << std::endl;
-		eil_mas[a].mediana = 0.4 * eil_mas[a].mediana + 0.6 * eil_mas[a].egz;
+          for(int i = 0; i<sk-1; i++){
+            temp[i] = nd_paz[i];
+          }
+          delete[] nd_paz;
+          nd_paz = new int[sk];
+          for(int i =0; i < sk-1; i++){
+            nd_paz[i]= temp[i];
+          }
+          delete [] temp;
+          nd_paz[sk-1] = rand()%11;
+          sk++;
+        }
+        else {
+          cout << "Aciu uz suvestus duomenis apie "
+            << eil_mas[a].vard << " " << eil_mas[a].pavard << "." << std::endl;
+        }
+      } while (end != -1); //programa vykdoma kol vartotojas neiveda -1
 
-		// VIDURKIO SKAICIAVIMAS VEKTORIUI
-		eil_mas[a].vidurkis = eil_mas[a].vidurkis / sk;
-		cout << "Pazymiu vidurkis: " << eil_mas[a].vidurkis << std::endl;
-		eil_mas[a].vidurkis = 0.4 * eil_mas[a].vidurkis + 0.6 * eil_mas[a].egz;
+    }
+
+    // PAZYMIU SPAUSDINIMAS
+		for (int i = 0; i < sk-1; i++) { 
+    cout << nd_paz[i] << "; ";
+		} 
+    cout << std::endl;
+
+    int n = sizeof(nd_paz)/sizeof(nd_paz[0]);
+    eil_mas[a].mediana = findMedian(nd_paz, n);
+    cout << "Pazymiu median: " << eil_mas[a].mediana << std::endl;
+    eil_mas[a].vidurkis = findMean(nd_paz, n);
+    cout << "Pazymiu vidurkis: " << eil_mas[a].vidurkis << std::endl;
 
 		eil_vect.push_back(eil_mas[a]); //su indeksu 0
-
 	}
+
+
+
 	cout << "Jei norite, kad butu spausdinamas galutinis pazymys pagal vidurki, iveskite 0, \n"
-		 << "jei pagal mediana, iveskite 1." << std::endl;
+		<< "jei pagal mediana, iveskite 1." << std::endl;
 	int gal;
 	cin >> gal;
 
 	// spausdinimas
-	cout << std::endl << std::endl;
-	cout << std::left 
-		<< std::setw(20) << "Vardas" 
-		<< std::setw(20) << "Pavarde"
-		<< std::setw(20) << "Galutinis (Vid.)"
-		<< std::setw(20) << "Galutinis (Med.)"
-		<< std::setw(20) << std::endl;
-	cout << "------------------------------------------------------------------------" << std::endl;
-	for (int j = 0; j <n; j++)
-	{
+if (gal == 0) {
+		cout << std::endl << std::endl;
 		cout << std::left
-			<< std::setw(20) << eil_mas[j].vard
-			<< std::setw(20) << eil_mas[j].pavard
-			<< std::setw(20) << eil_mas[j].vidurkis
-			<< std::setw(20) << eil_mas[j].mediana << std::endl;
+			<< std::setw(20) << "Vardas"
+			<< std::setw(20) << "Pavarde"
+			<< std::setw(20) << "Galutinis (Vid.)"
+			<< std::setw(20) << std::endl;
+		cout << "------------------------------------------------------------------------" << std::endl;
+		for (int j = 0; j < n; j++)
+		{
+			cout << std::left
+				<< std::setw(20) << eil_vect[j].vard
+				<< std::setw(20) << eil_vect[j].pavard
+				<< std::setw(20) << eil_vect[j].vidurkis << std::endl;
+		}
 	}
-	eil_vect.clear(); 
+	else {
+		cout << std::endl << std::endl;
+		cout << std::left
+			<< std::setw(20) << "Vardas"
+			<< std::setw(20) << "Pavarde"
+			<< std::setw(20) << "Galutinis (Med.)"
+			<< std::setw(20) << std::endl;
+		cout << "------------------------------------------------------------------------" << std::endl;
+		for (int j = 0; j < n; j++)
+		{
+			cout << std::left
+				<< std::setw(20) << eil_vect[j].vard
+				<< std::setw(20) << eil_vect[j].pavard
+				<< std::setw(20) << eil_vect[j].mediana << std::endl;
+		}
+	}
+  
+	eil_vect.clear();
 
 }
-
