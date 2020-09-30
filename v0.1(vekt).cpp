@@ -61,7 +61,7 @@ void spausdinimas(vector<data> a, int n, int gal){
         case 1 :
           cout << std::setw(20) << a[j].mediana << endl;
         default :
-          cout << std::setw(20) << endl;
+          break;
       }
 		}
 
