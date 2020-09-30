@@ -6,10 +6,12 @@
 
 ### Kaip veikia programa (step-by-step):
 1. Vartotojas paraso, kiek studentu duomenu nori ivesti.  
-2. Vartotojas iveda studento varda, pavarde ir egzamino pazymi. 
-3. Vartotojas iveda studento pazymius, jei baige vesti privalo parasyti *'-1'*.
+2. Vartotojas iveda studento varda, pavarde.
+3. Vartotojas pasirenka, ar nori egzamino pazymi ivesti pats, ar generuoti atsitiktini pazymi.
+4. Vartotojas pasirenka, ar nori ivesti ND pazymius pats, ar generuoti atsitiktinai.
+3. Baiges vesti privalo parasyti *'-1'*.
 4. Programa padekoja uz ivestus duomenis apie studenta.
-5. Programa atspausdina ivesta namu darbu skaiciu.
+5. Programa atspausdina studento namu darbu pazymius.
 6. Apskaiciuojama bei atspausdinama namu darbu pazymiu mediana (ne galutinis pazymys!) bei galutinis pazymys (med.).
 7. Apskaiciuojamas bei atspausdinamas namu darbu pazymiu vidurkis (ne galutinis pazymys!) bei galutinis (vid.).
 
