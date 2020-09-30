@@ -35,6 +35,73 @@ double findMedian( vector<int> v, int n){
   return (double)suma/(double)n;
 }
 
+//SPAUSDINIMAS
+void spausdinimas(vector<data> a, int n, int gal){
+  	cout << endl << endl;
+		cout << std::left
+		    << std::setw(20) << "Vardas"
+			  << std::setw(20) << "Pavarde" ;
+      switch(gal){
+        case 0 :
+          cout << std::setw(20) << "Galutinis (Vid.)";
+        case 1 :
+          cout << std::setw(20) << "Galutinis (Med.)";
+        default :
+          cout << std::setw(20) << endl;
+      }
+		cout << "------------------------------------------------------------------------" << endl;
+    for (int j = 0; j < n; j++)
+		{
+			cout << std::left
+				<< std::setw(20) << a[j].vard
+				<< std::setw(20) << a[j].pavard ;
+        switch(gal){
+        case 0 :
+          cout << std::setw(20) << a[j].vidurkis << endl;
+        case 1 :
+          cout << std::setw(20) << a[j].mediana << endl;
+        default :
+          cout << std::setw(20) << endl;
+      }
+		}
+
+}
+
+// IVEDIMAS
+void ivedimas(vector<int> ndpaz, data eil, int pazymiai, int sk){
+    int end; // namu darbo pazymys
+    if (pazymiai ==1){
+		// RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
+		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
+      do {
+        cin >> end;
+        if (end != -1) {
+          eil.nd[sk] = end;
+          ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
+          sk = sk + 1;
+        }
+        else {
+          cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
+        }
+      } while (end != -1);
+    }
+    else { //ATSITIKTINIAI PAZYMIAI
+      cout << "Iveskite bet koki skaiciu ir bus generuojamas atsitiktinis pazymys, jei baigete vesti, parasykite '-1'. \n";
+      do {
+        cin >> end;
+        if (end != -1) {
+          eil.nd[sk] = rand()%11;
+          ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
+          sk = sk + 1;
+        }
+        else {
+          cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
+        }
+      } while (end != -1);
+
+    }
+}
+
 int main() {
 	data eil;
 	vector <data> eil_vect;
@@ -60,48 +127,14 @@ int main() {
     int pazymiai;
     cout << "Jei norite atsitiktinai generuotu pazymiu, iveskite '0', jei norite ivesti patys - '1'. \n";
     cin >> pazymiai;
-    int end; // namu darbo pazymys
-    int sk = 1; //indekso skaicius
+    int sk =1;
 
-    if (pazymiai ==1){
-		// RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
-		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
-
-      do {
-        cin >> end;
-        if (end != -1) {
-          eil.nd[sk] = end;
-          eil.vidurkis = eil.vidurkis + (float)eil.nd[sk];
-          ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
-          sk = sk + 1;
-        }
-        else {
-          cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
-        }
-      } while (end != -1);
-    }
-    else { //ATSITIKTINIAI PAZYMIAI
-      cout << "Iveskite bet koki skaiciu ir bus generuojamas atsitiktinis pazymys, jei baigete vesti, parasykite '-1'. \n";
-      do {
-        cin >> end;
-        if (end != -1){
-          eil.nd[sk] = rand()%11;
-          eil.vidurkis = eil.vidurkis + (float)eil.nd[sk];
-          ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
-          sk = sk + 1;
-        }
-        else{
-          cout << "Aciu uz suvestus duomenis apie "
-          << eil.vard << " " << eil.pavard << "." << endl;
-        }
-      } while (end != -1);
-
-    }
+    ivedimas(ndpaz, eil, pazymiai, sk);
 
     //PAZYMIU SPAUSDINIMAS
     cout << "Namu darbu pazymiai: ";
     for(int i=0; i<sk-1; i++){
-      cout << ndpaz[i] << ", ";
+      cout << ndpaz[i] << " ";
     }
     cout << endl;
 
@@ -127,39 +160,7 @@ int main() {
 	int gal;
 	cin >> gal;
 
-	if (gal == 0) { //SU VIDURKIU
-		cout << endl << endl;
-		cout << std::left
-			<< std::setw(20) << "Vardas"
-			<< std::setw(20) << "Pavarde"
-			<< std::setw(20) << "Galutinis (Vid.)"
-			<< std::setw(20) << endl;
-		cout << "------------------------------------------------------------------------" << endl;
-		for (int j = 0; j < n; j++)
-		{
-			cout << std::left
-				<< std::setw(20) << eil_vect[j].vard
-				<< std::setw(20) << eil_vect[j].pavard
-				<< std::setw(20) << eil_vect[j].vidurkis << endl;
-		}
-	}
-	else { //SU MEDIANA
-		cout << endl << endl;
-		cout << std::left
-			<< std::setw(20) << "Vardas"
-			<< std::setw(20) << "Pavarde"
-			<< std::setw(20) << "Galutinis (Med.)"
-			<< std::setw(20) << endl;
-		cout << "------------------------------------------------------------------------" << endl;
-		for (int j = 0; j < n; j++)
-		{
-			cout << std::left
-				<< std::setw(20) << eil_vect[j].vard
-				<< std::setw(20) << eil_vect[j].pavard
-				<< std::setw(20) << eil_vect[j].mediana << endl;
-		}
-
-	}
+  spausdinimas(eil_vect, n, gal);
 
 	eil_vect.clear();
 
