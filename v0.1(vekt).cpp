@@ -67,9 +67,35 @@ void spausdinimas(vector<data> a, int n, int gal){
 
 }
 
-// IVEDIMAS
-void ivedimas(vector<int> ndpaz, data eil, int pazymiai, int sk){
+
+int main() {
+	data eil;
+	vector <data> eil_vect;
+	vector<int> ndpaz; //NAMU DARBU VEKTORIUS
+
+	// DUOMENU IVEDIMAS 
+	int n = 0;
+	cout << "Kiek studentu duomenu ivesite? \n";
+	cin >> n;
+	for (int a = 0; a < n; a++)
+	{
+		cout << "Iveskite duomenis (vardas, pavarde): \n";
+		cin >> eil.vard >> eil.pavard;
+
+    cout << "Jei norite generuoti egzamino pazymi atsitiktinai, parasykite -1. Jei ne, iveskite pazymi paprastai. \n";
+    int egz_paz=0;
+    cin >> egz_paz;
+    if (egz_paz ==-1){
+      eil.egz = rand()%11;
+    }
+    else eil.egz = egz_paz;
+
+    int pazymiai;
+    cout << "Jei norite atsitiktinai generuotu pazymiu, iveskite '0', jei norite ivesti patys - '1'. \n";
+    cin >> pazymiai;
+    int sk =1;
     int end; // namu darbo pazymys
+
     if (pazymiai ==1){
 		// RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
 		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
@@ -100,36 +126,6 @@ void ivedimas(vector<int> ndpaz, data eil, int pazymiai, int sk){
       } while (end != -1);
 
     }
-}
-
-int main() {
-	data eil;
-	vector <data> eil_vect;
-	vector<int> ndpaz; //NAMU DARBU VEKTORIUS
-
-	// DUOMENU IVEDIMAS 
-	int n = 0;
-	cout << "Kiek studentu duomenu ivesite? \n";
-	cin >> n;
-	for (int a = 0; a < n; a++)
-	{
-		cout << "Iveskite duomenis (vardas, pavarde): \n";
-		cin >> eil.vard >> eil.pavard;
-
-    cout << "Jei norite generuoti egzamino pazymi atsitiktinai, parasykite -1. Jei ne, iveskite pazymi paprastai. \n";
-    int egz_paz=0;
-    cin >> egz_paz;
-    if (egz_paz ==-1){
-      eil.egz = rand()%11;
-    }
-    else eil.egz = egz_paz;
-
-    int pazymiai;
-    cout << "Jei norite atsitiktinai generuotu pazymiu, iveskite '0', jei norite ivesti patys - '1'. \n";
-    cin >> pazymiai;
-    int sk =1;
-
-    ivedimas(ndpaz, eil, pazymiai, sk);
 
     //PAZYMIU SPAUSDINIMAS
     cout << "Namu darbu pazymiai: ";
@@ -150,8 +146,6 @@ int main() {
 
 		eil_vect.push_back(eil); 
 		ndpaz.clear();
-		eil.vidurkis = 0;
-		eil.mediana = 0;
 	}
 
 	// SPAUSDINIMAS
