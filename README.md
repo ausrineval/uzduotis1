@@ -15,7 +15,7 @@
 8. Apskaiciuojama bei atspausdinama namu darbu pazymiu mediana (ne galutinis pazymys!) bei galutinis pazymys (med.).
 9. Apskaiciuojamas bei atspausdinamas namu darbu pazymiu vidurkis (ne galutinis pazymys!) bei galutinis (vid.).
 
- **Jei vartotojas nusprende pradzioje ivesti daugiau nei vieno studento duomenis, tai kartojami zingsniai 2-7, kol suvesti visu studentu duomenys.**
+ **Jei vartotojas nusprende pradzioje ivesti daugiau nei vieno studento duomenis, tai kartojami zingsniai 2-9, kol suvesti visu studentu duomenys.**
 
 10. Spausdinami stulpeliu pavadinimai: Vardas, Pavarde, Galutinis (Vid.), Galutinis (Med.).
 11. Spausdinami visu ivestu studentu duomenys pagal stulpelius.
