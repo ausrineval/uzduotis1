@@ -9,16 +9,16 @@
 2. Vartotojas iveda studento varda, pavarde.
 3. Vartotojas pasirenka, ar nori egzamino pazymi ivesti pats, ar generuoti atsitiktini pazymi.
 4. Vartotojas pasirenka, ar nori ivesti ND pazymius pats, ar generuoti atsitiktinai.
-3. Baiges vesti privalo parasyti *'-1'*.
-4. Programa padekoja uz ivestus duomenis apie studenta.
-5. Programa atspausdina studento namu darbu pazymius.
-6. Apskaiciuojama bei atspausdinama namu darbu pazymiu mediana (ne galutinis pazymys!) bei galutinis pazymys (med.).
-7. Apskaiciuojamas bei atspausdinamas namu darbu pazymiu vidurkis (ne galutinis pazymys!) bei galutinis (vid.).
+5. Baiges vesti privalo parasyti *'-1'*.
+6. Programa padekoja uz ivestus duomenis apie studenta.
+7. Programa atspausdina studento namu darbu pazymius.
+8. Apskaiciuojama bei atspausdinama namu darbu pazymiu mediana (ne galutinis pazymys!) bei galutinis pazymys (med.).
+9. Apskaiciuojamas bei atspausdinamas namu darbu pazymiu vidurkis (ne galutinis pazymys!) bei galutinis (vid.).
 
  **Jei vartotojas nusprende pradzioje ivesti daugiau nei vieno studento duomenis, tai kartojami zingsniai 2-7, kol suvesti visu studentu duomenys.**
 
-8. Spausdinami stulpeliu pavadinimai: Vardas, Pavarde, Galutinis (Vid.), Galutinis (Med.).
-9. Spausdinami visu ivestu studentu duomenys pagal stulpelius.
+10. Spausdinami stulpeliu pavadinimai: Vardas, Pavarde, Galutinis (Vid.), Galutinis (Med.).
+11. Spausdinami visu ivestu studentu duomenys pagal stulpelius.
 
 ### Issamiau apie v0.1 su vektoriumi
 Sukuriamas naujas vektorius **ndpaz**, kuriame saugomi interger tipo duomenys. Jame bus saugomi namu darbu pazymiai.  
