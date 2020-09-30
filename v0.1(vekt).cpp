@@ -90,13 +90,13 @@ int main() {
     }
     else eil.egz = egz_paz;
 
-    int pazymiai;
-    cout << "Jei norite atsitiktinai generuotu pazymiu, iveskite '0', jei norite ivesti patys - '1'. \n";
+    char pazymiai;
+    cout << "Jei norite ivesti pazymius paprastai, iveskite 'a', jei norite atsitiktinai generuotu pazymiu - 'b'. \n";
     cin >> pazymiai;
     int sk =1;
     int end; // namu darbo pazymys
 
-    if (pazymiai ==1){
+    if (pazymiai=='a'){
 		// RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
 		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
       do {
@@ -111,7 +111,7 @@ int main() {
         }
       } while (end != -1);
     }
-    else { //ATSITIKTINIAI PAZYMIAI
+    else if (pazymiai =='b') { //ATSITIKTINIAI PAZYMIAI
       cout << "Iveskite bet koki skaiciu ir bus generuojamas atsitiktinis pazymys, jei baigete vesti, parasykite '-1'. \n";
       do {
         cin >> end;
@@ -124,9 +124,11 @@ int main() {
           cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
         }
       } while (end != -1);
-
     }
-
+    else {
+      cout << "Ivesta neteisinga reiksme. \n";
+      return 0;
+    }
     //PAZYMIU SPAUSDINIMAS
     cout << "Namu darbu pazymiai: ";
     for(int i=0; i<sk-1; i++){
