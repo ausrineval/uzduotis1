@@ -64,7 +64,7 @@ int main() {
     int sk = 1; //indekso skaicius
 
     if (pazymiai ==1){
-		// AUTOMATINIS NAMU DARBU PAZYMIU IVEDIMAS
+		// RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
 		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
 
       do {
@@ -127,7 +127,7 @@ int main() {
 	int gal;
 	cin >> gal;
 
-	if (gal == 0) {
+	if (gal == 0) { //SU VIDURKIU
 		cout << endl << endl;
 		cout << std::left
 			<< std::setw(20) << "Vardas"
@@ -143,7 +143,7 @@ int main() {
 				<< std::setw(20) << eil_vect[j].vidurkis << endl;
 		}
 	}
-	else {
+	else { //SU MEDIANA
 		cout << endl << endl;
 		cout << std::left
 			<< std::setw(20) << "Vardas"
