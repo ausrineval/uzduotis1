@@ -23,10 +23,9 @@ Sukuriamas naujas vektorius **ndpaz**, kuriame saugomi interger tipo duomenys. J
 
 Namu darbu pazymiu ivedimo metu vykdomas *while* ciklas, kuris stabdomas, kai vartotojas iveda *'-1'*. Siame while cikle kiekvienas ivestas pazymys saugomas **ndpaz** vektoriuje naudojant *push_back* funkcija.  
 
-Pries skaiciuojant pazymiu mediana **ndpaz** vektoriaus elementai yra surusiuojami naudojant *sort* metoda. Su *if* statement apskaiciuojama mediana.  
-
-Vidurkiui suskaiciuoti anksciau minetame *while* cikle sudedami visi pazymiai.  
+Medianos ir vidurkio skaiciavimui sukurtos atskiros dvi funkcijos, kurios iskvieciamos *main* klaseje. 
 
 Programai baigus viska skaiciuoti apie n-ojo studento duomenis panaudojama funkcija *push_back* studento duomenu vektoriui **eil_vect** bei funkcija *clear* **ndpaz** vektoriui.
 
 ### Issamiau apie v0.1 su masyvu
+...
