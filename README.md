@@ -1,6 +1,7 @@
-# Pirmos uzduoties v0.1 dalis.
+# Pirmos uzduoties v0.2 dalis.
 ## Ka daro programa:
 - Saugo studentu duomenis (vardas, pavarde, egz. pazymys, n.d. pazymiai), kuriuos iveda vartotojas. 
+- Nuskaito studentu duomenis is failo.
 - Apskaiciuoja vidurki bei mediana pagal duota formule.
 - Atspausdina suformatuotus duomenis lenteleje.
 
@@ -28,6 +29,3 @@ Namu darbu pazymiu ivedimo metu vykdomas *while* ciklas, kuris stabdomas, kai va
 Medianos ir vidurkio skaiciavimui sukurtos atskiros dvi funkcijos, kurios iskvieciamos *main* klaseje. 
 
 Programai baigus viska skaiciuoti apie n-ojo studento duomenis panaudojama funkcija *push_back* studento duomenu vektoriui **eil_vect** bei funkcija *clear* **ndpaz** vektoriui.
-
-### Issamiau apie v0.1 su masyvu
-...
