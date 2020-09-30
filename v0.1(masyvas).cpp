@@ -22,16 +22,15 @@ double findMedian(int a[], int n){
   // First we sort the array 
   std::sort(a, a+n); 
     
-  if (n % 2 != 0) {
+  if (n % 2 ==1) {
     return (double)a[n/2]; }
-  else return (double)(a[(n-1)/2] + a[n/2])/2.0; 
+  else return (double)(a[n/2-1] + a[n/2])/2.0; 
 }
 
 //VIDURKIO RADIMAS MASYVUI
 double findMean(int a[], int n){ 
   int sum = 0; 
-  for (int i = 0; i < n; i++)  
-    sum += a[i]; 
+  for (int i = 0; i < n; i++) sum += a[i]; 
           
   return (double)sum/(double)n; 
 } 
@@ -124,16 +123,20 @@ int main() {
 		} 
     cout << std::endl;
 
-    int n = sizeof(nd_paz)/sizeof(nd_paz[0]);
+    // MEDIANOS RADIMAS MASYVUI 
+    int n = sk-1; //elementu skaicius
+    //cout << n <<std::endl;
+
     eil_mas[a].mediana = findMedian(nd_paz, n);
-    cout << "Pazymiu median: " << eil_mas[a].mediana << std::endl;
+    cout << "Pazymiu mediana: " << eil_mas[a].mediana << std::endl;
+    eil_mas[a].mediana = eil_mas[a].mediana*0.4 + 0.6*eil_mas[a].egz; //galutinis su mediana
+
     eil_mas[a].vidurkis = findMean(nd_paz, n);
     cout << "Pazymiu vidurkis: " << eil_mas[a].vidurkis << std::endl;
+    eil_mas[a].vidurkis = eil_mas[a].vidurkis* 0.4 + 0.6*eil_mas[a].egz; //galutinis su vidurkiu
 
 		eil_vect.push_back(eil_mas[a]); //su indeksu 0
 	}
-
-
 
 	cout << "Jei norite, kad butu spausdinamas galutinis pazymys pagal vidurki, iveskite 0, \n"
 		<< "jei pagal mediana, iveskite 1." << std::endl;
