@@ -30,4 +30,8 @@ Medianos ir vidurkio skaiciavimui sukurtos atskiros dvi funkcijos, kurios iskvie
 Programai baigus viska skaiciuoti apie n-ojo studento duomenis panaudojama funkcija *push_back* studento duomenu vektoriui **eil_vect** bei funkcija *clear* **ndpaz** vektoriui.
 
 ### Issamiau apie v0.1 su masyvu
-...
+Sukasi while ciklas, kurio metu vartotojas iveda reiksme, kuri irasoma i masyva. Jei baige vesti reiksmes, paraso '-1' ir ciklas sustoja.
+
+Sukuriamas paprastas integer **sk**, kurio reiksme pradzioje 1. Jis nusako masyvo dydi ir elemento indeksa.
+
+Sukuriamas naujas masyvas **nd_paz**. Taip pat sukuriamas laikinas masyvas **temp**, i kuri laikinai buna irasomas pazymys ir veliau irasomas i **nd_paz** masyva. Istrinamas **temp** masyvas ir **sk** padidinamas vienu. Tokiu budu sekantis vedamas pazymys tures kitoki indeksa, bei masyvu **nd_paz** ir **temp** dydziai bus didesni.
