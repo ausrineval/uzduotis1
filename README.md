@@ -20,12 +20,3 @@
 
 10. Spausdinami stulpeliu pavadinimai: Vardas, Pavarde, Galutinis (Vid.), Galutinis (Med.).
 11. Spausdinami visu ivestu studentu duomenys pagal stulpelius.
-
-### Issamiau apie v0.1 su vektoriumi
-Sukuriamas naujas vektorius **ndpaz**, kuriame saugomi interger tipo duomenys. Jame bus saugomi namu darbu pazymiai.  
-
-Namu darbu pazymiu ivedimo metu vykdomas *while* ciklas, kuris stabdomas, kai vartotojas iveda *'-1'*. Siame while cikle kiekvienas ivestas pazymys saugomas **ndpaz** vektoriuje naudojant *push_back* funkcija.  
-
-Medianos ir vidurkio skaiciavimui sukurtos atskiros dvi funkcijos, kurios iskvieciamos *main* klaseje. 
-
-Programai baigus viska skaiciuoti apie n-ojo studento duomenis panaudojama funkcija *push_back* studento duomenu vektoriui **eil_vect** bei funkcija *clear* **ndpaz** vektoriui.
