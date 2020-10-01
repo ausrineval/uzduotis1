@@ -30,12 +30,12 @@ double findMedian( vector<int> v, int n){
 	}
 }
 // VIDURKIS
- double findMean(vector<int> v, int n){
+double findMean(vector<int> v, int n){
   int suma = accumulate(v.begin(), v.end(), 0); //sudeda visus nd vektoriaus elementus
   return (double)suma/(double)n;
 }
 
-//SPAUSDINIMAS
+// SPAUSDINIMAS
 void spausdinimas(vector<data> a, int n, int gal){
   	cout << endl << endl;
 		cout << std::left
@@ -67,7 +67,6 @@ void spausdinimas(vector<data> a, int n, int gal){
 
 }
 
-
 int main() {
 	data eil;
 	vector <data> eil_vect;
@@ -77,87 +76,93 @@ int main() {
 	int n = 0;
 	cout << "Kiek studentu duomenu ivesite? \n";
 	cin >> n;
-	for (int a = 0; a < n; a++)
-	{
-		cout << "Iveskite duomenis (vardas, pavarde): \n";
-		cin >> eil.vard >> eil.pavard;
+  if (isdigit(n)){
+    for (int a = 0; a < n; a++)
+    {
+      cout << "Iveskite duomenis (vardas, pavarde): \n";
+      cin >> eil.vard >> eil.pavard;
 
-    cout << "Jei norite generuoti egzamino pazymi atsitiktinai, parasykite -1. Jei ne, iveskite pazymi paprastai. \n";
-    int egz_paz=0;
-    cin >> egz_paz;
-    if (egz_paz ==-1){
-      eil.egz = rand()%11;
+      cout << "Jei norite generuoti egzamino pazymi atsitiktinai, parasykite -1. Jei ne, iveskite pazymi paprastai. \n";
+      int egz_paz;
+      cin >> egz_paz;
+      if (egz_paz ==-1){
+        eil.egz = rand()%11;
+        cout << "Egzamino pazymys: " << eil.egz << endl;
+      }
+      else if(egz_paz==0 || egz_paz<=10) {
+        eil.egz = egz_paz;
+        cout << "Egzamino pazymys: " << eil.egz << endl;}
+      else cout << "Ivesta neteisinga reiksme. \n";
+
+      char pazymiai;
+      cout << "Jei norite ivesti pazymius paprastai, iveskite 'a', jei norite atsitiktinai generuotu pazymiu - 'b'. \n";
+      cin >> pazymiai;
+      int sk =1;
+      int end; // namu darbo pazymys
+
+      if (pazymiai=='a'){
+      // RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
+        cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
+        do {
+          cin >> end;
+          if (end != -1) {
+            eil.nd[sk] = end;
+            ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
+            sk = sk + 1;
+          }
+          else {
+            cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
+          }
+        } while (end != -1);
+      }
+      else if (pazymiai =='b') { //ATSITIKTINIAI PAZYMIAI
+        cout << "Iveskite bet koki skaiciu ir bus generuojamas atsitiktinis pazymys, jei baigete vesti, parasykite '-1'. \n";
+        do {
+          cin >> end;
+          if (end != -1) {
+            eil.nd[sk] = rand()%11;
+            ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
+            sk = sk + 1;
+          }
+          else {
+            cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
+          }
+        } while (end != -1);
+      }
+      else {
+        cout << "Ivesta neteisinga reiksme. \n";
+        return 0;
+      }
+      //PAZYMIU SPAUSDINIMAS
+      cout << "Namu darbu pazymiai: ";
+      for(int i=0; i<sk-1; i++){
+        cout << ndpaz[i] << " ";
+      }
+      cout << endl;
+
+      // MEDIANOS SKAICIAVIMAS
+      eil.mediana = findMedian(ndpaz, ndpaz.size());
+      cout << "Pazymiu mediana: " << eil.mediana << endl;
+      eil.mediana = 0.4 * eil.mediana + 0.6 * eil.egz;
+
+      // VIDURKIO SKAICIAVIMAS
+      eil.vidurkis = findMean(ndpaz, ndpaz.size());
+      cout << "Pazymiu vidurkis: " << eil.vidurkis <<endl;
+      eil.vidurkis = 0.4 * eil.vidurkis + 0.6 * eil.egz;
+
+      eil_vect.push_back(eil); 
+      ndpaz.clear();
     }
-    else eil.egz = egz_paz;
 
-    char pazymiai;
-    cout << "Jei norite ivesti pazymius paprastai, iveskite 'a', jei norite atsitiktinai generuotu pazymiu - 'b'. \n";
-    cin >> pazymiai;
-    int sk =1;
-    int end; // namu darbo pazymys
+    // SPAUSDINIMAS
+    cout << "Jei norite, kad butu spausdinamas galutinis pazymys pagal vidurki, iveskite 0, "
+      << "jei pagal mediana, iveskite 1." << endl;
+    int gal;
+    cin >> gal;
 
-    if (pazymiai=='a'){
-		// RANKINIS NAMU DARBU PAZYMIU IVEDIMAS
-		cout << "Iveskite studento nd pazymius, jei baigete vesti, parasykite '-1'. \n";
-      do {
-        cin >> end;
-        if (end != -1) {
-          eil.nd[sk] = end;
-          ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
-          sk = sk + 1;
-        }
-        else {
-          cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
-        }
-      } while (end != -1);
-    }
-    else if (pazymiai =='b') { //ATSITIKTINIAI PAZYMIAI
-      cout << "Iveskite bet koki skaiciu ir bus generuojamas atsitiktinis pazymys, jei baigete vesti, parasykite '-1'. \n";
-      do {
-        cin >> end;
-        if (end != -1) {
-          eil.nd[sk] = rand()%11;
-          ndpaz.push_back(eil.nd[sk]); //pazymiai surasomi i vektoriu
-          sk = sk + 1;
-        }
-        else {
-          cout << "Aciu uz suvestus duomenis apie " << eil.vard << " " << eil.pavard << "." << endl;
-        }
-      } while (end != -1);
-    }
-    else {
-      cout << "Ivesta neteisinga reiksme. \n";
-      return 0;
-    }
-    //PAZYMIU SPAUSDINIMAS
-    cout << "Namu darbu pazymiai: ";
-    for(int i=0; i<sk-1; i++){
-      cout << ndpaz[i] << " ";
-    }
-    cout << endl;
+    spausdinimas(eil_vect, n, gal);
 
-		// MEDIANOS SKAICIAVIMAS
-    eil.mediana = findMedian(ndpaz, ndpaz.size());
-		cout << "Pazymiu mediana: " << eil.mediana << endl;
-		eil.mediana = 0.4 * eil.mediana + 0.6 * eil.egz;
-
-		// VIDURKIO SKAICIAVIMAS
-    eil.vidurkis = findMean(ndpaz, ndpaz.size());
-		cout << "Pazymiu vidurkis: " << eil.vidurkis <<endl;
-		eil.vidurkis = 0.4 * eil.vidurkis + 0.6 * eil.egz;
-
-		eil_vect.push_back(eil); 
-		ndpaz.clear();
-	}
-
-	// SPAUSDINIMAS
-	cout << "Jei norite, kad butu spausdinamas galutinis pazymys pagal vidurki, iveskite 0, "
-		<< "jei pagal mediana, iveskite 1." << endl;
-	int gal;
-	cin >> gal;
-
-  spausdinimas(eil_vect, n, gal);
-
-	eil_vect.clear();
-
+    eil_vect.clear();
+  }
+  else cout << "Ivesta neteisinga reiksme. \n";
 }
