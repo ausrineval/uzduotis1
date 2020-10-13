@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <numeric>
 #include <fstream>
+#include <sstream>
 
 using std::cout;
 using std::cin;
@@ -19,8 +20,7 @@ using std::ws;
 struct data {
     string vard, pavard;
     int nd[10], egz = 0;
-    vector <float> paz;
-    float vidurkis = 0, mediana = 0, galutinis = 0;
+    float vidurkis = 0, mediana = 0;
 };
 
 // MEDIANA
@@ -38,6 +38,40 @@ double findMedian( vector<int> v, int n){
 double findMean(vector<int> v, int n){
     int suma = accumulate(v.begin(), v.end(), 0); //sudeda visus nd vektoriaus elementus
     return (double)suma/(double)n;
+}
+
+void mediana(vector<data> a, int n){
+    cout << endl << endl;
+    cout << std::left
+         << std::setw(20) << "Vardas"
+         << std::setw(20) << "Pavarde"
+         << std::setw(20) << "Galutinis (Med.)"
+         << std::setw(20) << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+    for (int j = 0; j < n; j++)
+    {
+        cout << std::left
+             << std::setw(20) << a[j].vard
+             << std::setw(20) << a[j].pavard
+             << std::setw(20) << a[j].mediana << endl;
+    }
+}
+
+void vidurkis(vector<data> a, int n){
+    cout << endl << endl;
+    cout << std::left
+         << std::setw(20) << "Vardas"
+         << std::setw(20) << "Pavarde"
+         << std::setw(20) << "Galutinis (Vid.)"
+         << std::setw(20) << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+    for (int j = 0; j < n; j++)
+    {
+        cout << std::left
+             << std::setw(20) << a[j].vard
+             << std::setw(20) << a[j].pavard
+             << std::setw(20) << a[j].vidurkis << endl;
+    }
 }
 
 //SPAUSDINIMAS
@@ -71,16 +105,19 @@ void spausdinimas(vector<data> a, int n, int gal){
     }
 }
 
-//DUOMENU NUSKAITYMAS
-void nuskaitymas(){
-    ifstream fd("C:\\Users\\ausri\\CLionProjects\\untitled\\kursiokai.txt");
-    if (fd.fail()) {
-        cout << "Failas (kursiokai.txt) nerastas." << endl;
-        exit(1);
-    }
-    if (fd.is_open()) cout << "Sekmingai atidaryta \n";
-}
+double ndsk(){
+    ifstream file("C:\\Users\\ausri\\CLionProjects\\untitled\\kursiokai.txt");
+    string line;
+    getline(file, line);
+    std::stringstream ss(line);
 
+    int ndsk=0;
+    string zodis;
+    while (ss >> zodis) {
+        ++ndsk;
+    }
+    return ndsk;
+}
 
 int main() {
     data eil;
@@ -100,12 +137,11 @@ int main() {
         if (fd.is_open()) cout << "Sekmingai atidaryta \n";
 
         while (!fd.eof()) {
-
             data stud_duomenys;
             fd >> stud_duomenys.vard >> ws >> stud_duomenys.pavard >> ws;
             string pazymys;
 
-            for (int j = 0; j < 5; ++j) { //nuskaito 5 pazymius
+            for (int j = 0; j < ndsk() - 3; ++j) { //nuskaito 5 pazymius
                 fd >> pazymys >> ws;
                 int paz;
                 paz = std::stoi(pazymys);
@@ -121,16 +157,17 @@ int main() {
             stud_duomenys.egz = egz;
 
             // MEDIANOS SKAICIAVIMAS
-            eil.mediana = findMedian(ndpaz, ndpaz.size());
-            cout << "Pazymiu mediana: " << eil.mediana << endl;
-            eil.mediana = 0.4 * eil.mediana + 0.6 * eil.egz;
+            stud_duomenys.mediana = findMedian(ndpaz, ndpaz.size());
+            cout << "Pazymiu mediana: " << stud_duomenys.mediana << endl;
+            stud_duomenys.mediana = 0.4 * stud_duomenys.mediana + 0.6 * stud_duomenys.egz;
 
             // VIDURKIO SKAICIAVIMAS
-            eil.vidurkis = findMean(ndpaz, ndpaz.size());
-            cout << "Pazymiu vidurkis: " << eil.vidurkis <<endl;
-            eil.vidurkis = 0.4 * eil.vidurkis + 0.6 * eil.egz;
+            stud_duomenys.vidurkis = findMean(ndpaz, ndpaz.size());
+            cout << "Pazymiu vidurkis: " << stud_duomenys.vidurkis <<endl;
+            stud_duomenys.vidurkis = 0.4 * stud_duomenys.vidurkis + 0.6 * stud_duomenys.egz;
 
             eil_vect.push_back(stud_duomenys);
+            ndpaz.clear();
         }
         fd.close();
     }
@@ -224,7 +261,13 @@ int main() {
     int galutinis;
     cin >> galutinis;
     int n = eil_vect.size(); //apskaiciuoti studentu skaiciu
-    spausdinimas(eil_vect, n, galutinis);
+
+    /*if(galutinis = 0){
+        vidurkis(eil_vect, n);
+    } else if (galutinis = 1){
+        mediana(eil_vect, n);
+    } else cout << "Ivesta neteisinga reiksme. \n"; */
+    spausdinimas(eil_vect, n, galutinis); //neveikia su nuskaitytu failu
 
     eil_vect.clear();
 
