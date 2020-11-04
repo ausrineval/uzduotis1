@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <algorithm>
 #include "nuskaitymas.h"
 #include "spausdinimas.h"
 
@@ -12,7 +13,14 @@ using std::vector;
 using std::ifstream;
 using std::ws;
 
-//SPAUSDINIMAS
+bool palyginimas(const data& stud1, const data& stud2){
+    if (stud1.vard != stud2.vard){
+        return stud1.vard < stud2.vard;
+    }
+    if (stud1.vard == stud2.vard){
+        return stud1.pavard < stud2.pavard;
+    }
+}
 
 void spausdinimasMed(vector <data>& a, int n){
     cout << endl << endl;
@@ -48,7 +56,12 @@ void spausdinimasVid(vector <data>& a, int n){
         }
 }
 
+//SPAUSDINIMAS
 void spausdinimas(vector <data>& a, int n, int gal){
+    try {
+    sort(a.begin(), a.end(), palyginimas);
+    }
+    catch(std::exception e) {cout << "Ivyko rusiavimo klaida \n";}
     if (gal == 0) spausdinimasVid(a, n);
     else if (gal == 1) spausdinimasMed(a, n);
     else cout<<"Ivesta neteisinga reiksme. \n";
