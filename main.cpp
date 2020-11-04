@@ -107,7 +107,7 @@ int main() {
             ndpaz.clear();
         }
     }
-    else cout<< "Ivesta neteisinga reiksme \n";
+    else cout << "Ivesta neteisinga reiksme \n";
 
     cout << "Studentu skaicius: " << eil_vect.size() << endl;
     // SPAUSDINIMAS
