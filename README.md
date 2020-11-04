@@ -1,4 +1,4 @@
-# Pirmos uzduoties v0.2 dalis.
+# Pirmos uzduoties v0.3 dalis.
 ## Ka daro programa:
 - Saugo studentu duomenis (vardas, pavarde, egz. pazymys, n.d. pazymiai), kuriuos iveda vartotojas. 
 - Nuskaito studentu duomenis is failo.
