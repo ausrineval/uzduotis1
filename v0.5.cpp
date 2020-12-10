@@ -5,6 +5,7 @@
 #include <vector>
 #include <numeric>
 #include <chrono>
+#include <list>
 
 // DUOMENYS
 struct data {
@@ -12,6 +13,14 @@ struct data {
     int nd[10], egz = 0;
     float GP = 0; //galutinis
 };
+
+data get(std::list<data> _list, int _i) {
+    std::list<data>::iterator it = _list.begin();
+    for (int i = 0; i < _i; i++) {
+        ++it;
+    }
+    return *it;
+}
 
 int random(){
     return rand()%11;
@@ -34,7 +43,7 @@ float count_GP(std::vector<int> skaiciai) {
 
 int generavimas(std::vector<int> pazymiai){
     int kiek;
-    std::cout << "iveskite studentu skaiciu: " << std::endl;
+    std::cout << "Iveskite studentu skaiciu: " << std::endl;
     std::cin >> kiek;
     std::string pavadinimas = "Studentai_" + std::to_string(kiek) + ".txt";
     auto start = std::chrono::high_resolution_clock::now();
@@ -57,12 +66,12 @@ int generavimas(std::vector<int> pazymiai){
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
-    std::cout << "Failo su " + std::to_string(kiek) + " studentu/-ais kurimas uztruko: " << diff.count() << " s\n";
+    std::cout << "Failo su " + std::to_string(kiek) + " studentu kurimas uztruko: " << diff.count() << " s\n";
 
     return kiek;
 }
 
-void readFromFile(std::vector<data>& Eil, int kiek)
+void readFromFile(std::list<data>& Eil, int kiek)
 {
     int student_counter = 0;
     std::ifstream fileRead;
@@ -77,17 +86,19 @@ void readFromFile(std::vector<data>& Eil, int kiek)
         while (student_counter < kiek)
         {
 
-            Eil.resize(Eil.size() + 1);
-            fileRead >> Eil.at(student_counter).vard;
-            fileRead >> Eil.at(student_counter).pavard;
-            fileRead >> Eil.at(student_counter).GP;
+            data stud;
+            fileRead >> stud.vard;
+            fileRead >> stud.pavard;
+            fileRead >> stud.GP;
+            Eil.push_back(stud);
             student_counter++;
         }
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end - start;
-        std::cout << "Failo su " + std::to_string(kiek) + " studentais nuskaitymas uztruko: " << diff.count() << " s\n";
+        //std::cout << "Failo su " + std::to_string(kiek) + " studentais nuskaitymas uztruko: " << diff.count() << " s\n";
     }
 }
+
 int main() {
     data eil;
     std::vector <data> eil_vect;
@@ -96,10 +107,10 @@ int main() {
     std::vector<int> skaiciai;
 
     int kiek = generavimas(skaiciai);
-    std::vector<data> studentai;
+    std::list<data> studentai;
     readFromFile(studentai, kiek);
-    std::vector<data> protingi;
-    std::vector<data> vargsiukai;
+    std::list<data> protingi;
+    std::list<data> vargsiukai;
     int vargs = 0;
     int prot = 0;
 
@@ -107,53 +118,50 @@ int main() {
     auto st = start;
     for (int i = 0; i < kiek; i++) {
         float paz = 5.00;
-        if (studentai.at(i).GP < paz) {
-            vargsiukai.push_back(studentai.at(i));
+        if (get(studentai, i).GP < paz) {
+            vargsiukai.push_back(get(studentai, i));
             vargs++;
         }
     }
     for (int j = 0; j < kiek; j++) {
         float paz = 5.00;
-        if (studentai.at(j).GP >= paz) {
-            protingi.push_back(studentai.at(j));
+        int _gp = get(studentai, j).GP;
+        if (get(studentai, j).GP >= paz) {
+            protingi.push_back(get(studentai, j));
             prot++;
         }
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
-    std::cout << "Failo rusiavimas su " + std::to_string(kiek)+ " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
-
-
-
+    std::cout << "Failo rusiavimas su " + std::to_string(kiek) + " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
     std::string pav;
     pav = "vargsiukai_" + std::to_string(kiek) + ".txt";
     std::ofstream vargs_failas(pav);
     auto start1 = std::chrono::high_resolution_clock::now();
     auto st1 = start1;
-    for (int i = 0; i < kiek; i++) {
-
+    for (int i = 0; i < vargs; i++) {
         float paz = 5.00;
-        if (studentai.at(i).GP < paz) {
-            vargs_failas << studentai.at(i).vard << std::setw(20) << studentai.at(i).pavard << std::setw(18) << studentai.at(i).GP << std::endl;
+        if (get(vargsiukai, i).GP < 5.00) {
+            vargs_failas << get(vargsiukai, i).vard << std::setw(20) << get(vargsiukai, i).pavard << std::setw(18) << get(vargsiukai, i).GP << std::endl;
         }
-
     }
     auto end1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff1 = end1 - start1;
-    std::cout << "Failo isvedimas su " + std::to_string(kiek) + " studentais  i vargsiukus uztruko : " << diff1.count() << " s\n";
+    //std::cout << "Failo isvedimas su " + std::to_string(kiek) + " studentais  i vargsiukus uztruko : " << diff1.count() << " s\n";
 
     pav = "protingi_" + std::to_string(kiek) + ".txt";
     std::ofstream prot_failas(pav);
-    auto start2= std::chrono::high_resolution_clock::now();
+    auto start2 = std::chrono::high_resolution_clock::now();
     auto st2 = start2;
     for (int j = 0; j < kiek; j++) {
         float paz = 5.00;
-        if (studentai.at(j).GP >= paz) {
-            prot_failas << studentai.at(j).vard << std::setw(20) << studentai.at(j).pavard << std::setw(18) << studentai.at(j).GP << std::endl;
+        //int _gp = get(studentai, j).GP;
+        if (get(studentai, j).GP >= paz) {
+            prot_failas << get(studentai, j).vard << std::setw(20) << get(studentai, j).pavard << std::setw(18) << get(studentai, j).GP << std::endl;
         }
     }
     auto end2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff2 = end2 - start2;
-    std::cout << "Failo isvedimas su " + std::to_string(kiek) + " studentais  i protingus uztruko : " << diff2.count() << " s\n";
+    //std::cout << "Failo isvedimas su " + std::to_string(kiek) + " studentais  i protingus uztruko : " << diff2.count() << " s\n";
 }
 
