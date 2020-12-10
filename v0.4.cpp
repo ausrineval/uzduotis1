@@ -34,7 +34,7 @@ float count_GP(std::vector<int> skaiciai) {
 
 int generavimas(std::vector<int> pazymiai){
     int kiek;
-    std::cout << "iveskite studentu skaiciu: " << std::endl;
+    std::cout << "Iveskite studentu skaiciu: " << std::endl;
     std::cin >> kiek;
     std::string pavadinimas = "Studentai_" + std::to_string(kiek) + ".txt";
     auto start = std::chrono::high_resolution_clock::now();
@@ -57,7 +57,7 @@ int generavimas(std::vector<int> pazymiai){
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
-    std::cout << "Failo su " + std::to_string(kiek) + " studentu/-ais kurimas uztruko: " << diff.count() << " s\n";
+    std::cout << "- Failo su " + std::to_string(kiek) + " studentu/-ais kurimas uztruko: " << diff.count() << " s\n";
 
     return kiek;
 }
@@ -85,7 +85,7 @@ void readFromFile(std::vector<data>& Eil, int kiek)
         }
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end - start;
-        std::cout << "Failo su " + std::to_string(kiek) + " studentais nuskaitymas uztruko: " << diff.count() << " s\n";
+        std::cout << "- Failo su " + std::to_string(kiek) + " studentais nuskaitymas uztruko: " << diff.count() << " s\n";
     }
 }
 int main() {
@@ -121,7 +121,7 @@ int main() {
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
-    std::cout << "Failo rusiavimas su " + std::to_string(kiek)+ " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
+    std::cout << "- Failo rusiavimas su " + std::to_string(kiek)+ " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
 
 
 
@@ -140,7 +140,7 @@ int main() {
     }
     auto end1 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff1 = end1 - start1;
-    std::cout << "Failo isvedimas su " + std::to_string(kiek) + " studentais  i vargsiukus uztruko : " << diff1.count() << " s\n";
+    std::cout << "- Failo isvedimas su " + std::to_string(kiek) + " studentais  i vargsiukus uztruko : " << diff1.count() << " s\n";
 
     pav = "protingi_" + std::to_string(kiek) + ".txt";
     std::ofstream prot_failas(pav);
@@ -154,6 +154,6 @@ int main() {
     }
     auto end2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff2 = end2 - start2;
-    std::cout << "Failo isvedimas su " + std::to_string(kiek) + " studentais  i protingus uztruko : " << diff2.count() << " s\n";
+    std::cout << "- Failo isvedimas su " + std::to_string(kiek) + " studentais  i protingus uztruko : " << diff2.count() << " s\n";
 }
 
