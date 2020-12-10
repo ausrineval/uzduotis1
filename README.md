@@ -1,4 +1,4 @@
-# Pirmos uzduoties v0.4 dalis.
+# Pirmos uzduoties v0.į dalis.
 ## Efektyvumo tyrimas
 
 ### Testavimo sistemos parametrai:
