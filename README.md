@@ -1,22 +1,35 @@
-# Pirmos uzduoties v0.2 dalis.
-## Ka daro programa:
-- Saugo studentu duomenis (vardas, pavarde, egz. pazymys, n.d. pazymiai), kuriuos iveda vartotojas. 
-- Nuskaito studentu duomenis is failo.
-- Apskaiciuoja vidurki bei mediana pagal duota formule.
-- Atspausdina suformatuotus duomenis lenteleje.
+# Pirmos uzduoties v0.4 dalis.
+## Efektyvumo tyrimas
+### Su 1000 irasu:
+Failo su 1000 studentu kurimas uztruko: 0.0207927 s
+Failo su 1000 studentais nuskaitymas uztruko: 0.0083197 s
+Failo rusiavimas i dvi grupes su 1000 studentais uztruko : 0.003331 s
+Failo isvedimas su 1000 studentais i vargsiukus uztruko : 0.0047461 s
+Failo isvedimas su 1000 studentais i protingus uztruko : 0.0051605 s
 
-### Kaip veikia programa (step-by-step):
-1. Vartotojas paraso, kiek studentu duomenu nori ivesti.  
-2. Vartotojas iveda studento varda, pavarde.
-3. Vartotojas pasirenka, ar nori egzamino pazymi ivesti pats, ar generuoti atsitiktini pazymi.
-4. Vartotojas pasirenka, ar nori ivesti ND pazymius pats, ar generuoti atsitiktinai.
-5. Baiges vesti privalo parasyti *'-1'*.
-6. Programa padekoja uz ivestus duomenis apie studenta.
-7. Programa atspausdina studento namu darbu pazymius.
-8. Apskaiciuojama bei atspausdinama namu darbu pazymiu mediana (ne galutinis pazymys!) bei galutinis pazymys (med.).
-9. Apskaiciuojamas bei atspausdinamas namu darbu pazymiu vidurkis (ne galutinis pazymys!) bei galutinis (vid.).
+### Su 10000 irasu:
+Failo su 10000 studentu kurimas uztruko: 0.194269 s
+Failo su 10000 studentais nuskaitymas uztruko: 0.0828737 s
+Failo rusiavimas i dvi grupes su 10000 studentais uztruko : 0.0267262 s
+Failo isvedimas su 10000 studentais i vargsiukus uztruko : 0.046496 s
+Failo isvedimas su 10000 studentais i protingus uztruko : 0.0471798 s
 
- **Jei vartotojas nusprende pradzioje ivesti daugiau nei vieno studento duomenis, tai kartojami zingsniai 2-9, kol suvesti visu studentu duomenys.**
+### Su 100000 irasu:
+Failo su 100000 studentu kurimas uztruko: 1.91879 s
+Failo su 100000 studentais nuskaitymas uztruko: 0.909682 s
+Failo rusiavimas i dvi grupes su 100000 studentais uztruko : 0.311133 s
+Failo isvedimas su 100000 studentais i vargsiukus uztruko : 0.450936 s
+Failo isvedimas su 100000 studentais i protingus uztruko : 0.463027 s
 
-10. Spausdinami stulpeliu pavadinimai: Vardas, Pavarde, Galutinis (Vid.), Galutinis (Med.).
-11. Spausdinami visu ivestu studentu duomenys pagal stulpelius.
+### Su 1000000 irasu:
+Failo su 1000000 studentu kurimas uztruko: 19.1981 s
+Failo su 1000000 studentais nuskaitymas uztruko: 8.50887 s
+Failo rusiavimas i dvi grupes su 1000000 studentais uztruko : 3.39965 s
+Failo isvedimas su 1000000 studentais i vargsiukus uztruko : 4.58077 s
+Failo isvedimas su 1000000 studentais i protingus uztruko : 4.62288 s
+
+### Su 10000000 irasu:
+Failo su 10000000 studentu kurimas uztruko: 192.746 s
+
+Process finished with exit code 1073741855
+(nepavyko)
