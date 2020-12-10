@@ -15,6 +15,7 @@
 - Failo rusiavimas su 10000 studentais i dvi grupes uztruko : 475.748 s
 
 ### Su 100000 irasu:
+- Failo su 100000 studentais nuskaitymas uztruko: 0.758097 s
 
 ### Su 1000000 irasu:
 
