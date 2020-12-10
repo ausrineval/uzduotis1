@@ -2,14 +2,15 @@
 ## Efektyvumo tyrimas
 
 ### Testavimo sistemos parametrai:
-- CPU: 
-- RAM: 
-- SSD: 
+- CPU: AMD Ryzen 9 3900X 12-Core Processor, 3.79 GHz
+- RAM: 16.0 GB
+- SSD: 1.0 TB
 
 ### Su 1000 irasu:
+- Failo su 1000 studentais nuskaitymas uztruko: 0.0073746 s
+- Failo rusiavimas su 1000 studentais i dvi grupes uztruko : 4.70798 s
 
 ### Su 10000 irasu:
-
 
 ### Su 100000 irasu:
 
