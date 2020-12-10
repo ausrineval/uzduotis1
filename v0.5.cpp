@@ -66,7 +66,7 @@ int generavimas(std::vector<int> pazymiai){
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
-    std::cout << "Failo su " + std::to_string(kiek) + " studentu kurimas uztruko: " << diff.count() << " s\n";
+    //std::cout << "Failo su " + std::to_string(kiek) + " studentu kurimas uztruko: " << diff.count() << " s\n";
 
     return kiek;
 }
@@ -95,7 +95,7 @@ void readFromFile(std::list<data>& Eil, int kiek)
         }
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end - start;
-        //std::cout << "Failo su " + std::to_string(kiek) + " studentais nuskaitymas uztruko: " << diff.count() << " s\n";
+        std::cout << "- Failo su " + std::to_string(kiek) + " studentais nuskaitymas uztruko: " << diff.count() << " s\n";
     }
 }
 
@@ -133,7 +133,7 @@ int main() {
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
-    std::cout << "Failo rusiavimas su " + std::to_string(kiek) + " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
+    std::cout << "- Failo rusiavimas su " + std::to_string(kiek) + " studentais i dvi grupes uztruko : " << diff.count() << " s\n";
     std::string pav;
     pav = "vargsiukai_" + std::to_string(kiek) + ".txt";
     std::ofstream vargs_failas(pav);
