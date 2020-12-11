@@ -23,5 +23,4 @@
 - Failo rusiavimas uztruktu kelias dienas
 
 ### Su 10000000 irasu:
-
-- Failo rusiavimas uztruktu kelias dienas
+Process finished with exit code 3 (neveikia)
