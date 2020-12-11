@@ -16,7 +16,12 @@
 
 ### Su 100000 irasu:
 - Failo su 100000 studentais nuskaitymas uztruko: 0.758097 s
+- Failo rusiavimas su 100000 studentais i dvi grupes uztruko : 50869.5 s
 
 ### Su 1000000 irasu:
+- Failo su 1000000 studentais nuskaitymas uztruko: 7.32511 s
+- Failo rusiavimas uztruktu kelias dienas
 
 ### Su 10000000 irasu:
+
+- Failo rusiavimas uztruktu kelias dienas
